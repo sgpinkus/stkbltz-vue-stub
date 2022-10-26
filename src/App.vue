@@ -1,30 +1,23 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import MyForm from './MyForm.vue';
 
 export default defineComponent({
-  data(): any { return {
-      x: [
-        { _id: "1", value: "A" },
-        { _id: "2", value: "B" },
-        { _id: "3", value: "C" }
-      ],
-    }
-  }
+  components: { MyForm },
 });
 </script>
 
 <template>
-  <main>
-    <table>
-      <tr v-for='row in x' :key="row._id">
-        <template v-for='(v, k) in row' :key="v">
-          <td v-if='(k as unknown) !== "_id"'>{{ v }}</td>
-        </template>
-      </tr>
-    </table>
-  </main>
+  <v-app>
+    <v-main>
+      <v-container class='align-center justify-center fill-height'>
+        <v-row class='align-center justify-center fill-height'>
+          <v-col md=5 cols=12>
+            <MyForm :initialUser='{ fullName: "Bob", email: "bob@email.com" }'></MyForm>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
-<style scoped>
-  table, td { padding: 1em; border: dashed salmon }
-</style>
